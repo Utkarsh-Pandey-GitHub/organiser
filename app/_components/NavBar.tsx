@@ -10,7 +10,7 @@ function NavBar() {
 
 
   return (
-    <div className="flex gap-5 justify-around items-center w-auto  m-2 p-4 bg-opacity-40 rounded-3xl border border-white border-opacity-85">
+    <div className="flex gap-5 justify-around items-center w-full  m-2 p-4 bg-opacity-40 rounded-3xl border border-white border-opacity-85">
       <div></div>
       <div className="flex ustify-center items-center gap-2 ">
         <Link href={"/"} className={`${path == "/" ? "text-black bg-white font-semibold " : ""} rounded-full p-2`}>
@@ -22,7 +22,7 @@ function NavBar() {
         <Link href={"/messages"} className={`${path == "/messages" ? "text-black bg-white font-semibold" : ""} rounded-full p-2`}>
           Messages
         </Link>
-        <Link href={"/events"} className={`${path == "/events" ? "text-black bg-white font-semibold" : ""} rounded-full p-2`}>
+        <Link href={"/schedules"} className={`${path == "/schedules" ? "text-black bg-white font-semibold" : ""} rounded-full p-2`}>
           Events
         </Link>
         <Link href={"/saved"} className={`${path == "/saved" ? "text-black bg-white font-semibold" : ""} rounded-full p-2`}>
