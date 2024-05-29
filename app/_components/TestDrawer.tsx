@@ -65,7 +65,7 @@ const data = [
 ]
 
 export function TestDrawer() {
-    
+
     return (
         <div className="bg-neutral-900 text-black">
             <Drawer >
@@ -79,40 +79,56 @@ export function TestDrawer() {
                             <DrawerDescription>Choose any on these productivity options</DrawerDescription>
                         </DrawerHeader>
                         <div className="flex justify-around ">
-                            <div className="text-center ">
-                                <Image src={chat} alt="chat" width={48} height={48} className="hover:shadow-md mx-auto" />
-                                <div className="ubuntu">
-                                    chat
-                                </div>
-                            </div>
-                            <div className="text-center">
-                                <Image src={note} alt="note" width={48} height={48} className="hover:shadow-md mx-auto" />
-                                <div className="ubuntu">
-                                    make notes
-                                </div>
-                            </div>
-                            <div className="text-center">
-                                <Image src={savings} alt="savings" width={48} height={48} className="hover:shadow-md mx-auto" />
-                                <div className="ubuntu">
-                                    saving goals
-                                </div>
-                            </div> 
                             <DrawerClose asChild>
-                            <Link
-                            href={"/schedules"}
-                            className="text-center">
-                                <Image src={schedule} alt="schedule" width={48} height={48} className="hover:shadow-md mx-auto" />
-                                <div className="ubuntu ">
-                                    schedule
-                                </div>
-                            </Link>
+                                <Link
+                                    href={"/messages"}
+                                    className="text-center">
+                                    <Image src={chat} alt="chat" width={48} height={48} className="hover:shadow-lg mx-auto peer" />
+                                    <div className="text-gray-500 font-semibold peer-active:text-rose-500 active:text-rose-500">
+                                        chat
+                                    </div>
+                                </Link>
                             </DrawerClose>
-                            <div className="text-center">
-                                <Image src={vidcall} alt="vidcall" width={48} height={48} className="hover:shadow-md mx-auto" />
-                                <div className="ubuntu">
-                                    video chat
-                                </div>
-                            </div>
+                            <DrawerClose asChild>
+                                <Link
+                                    href={"/vidcall"}
+                                    className="text-center">
+                                    <Image src={note} alt="note" width={48} height={48} className="hover:shadow-lg mx-auto peer" />
+                                    <div className="text-gray-500 font-semibold peer-active:text-emerald-500 active:text-emerald-500">
+                                        make notes
+                                    </div>
+                                </Link>
+                            </DrawerClose>
+                            <DrawerClose asChild>
+                                <Link
+                                    href={"/vidcall"}
+                                    className="text-center">
+                                    <Image src={savings} alt="savings" width={48} height={48} className="hover:shadow-lg mx-auto peer" />
+                                    <div className="text-gray-500 font-semibold peer-active:text-amber-500 active:text-amber-500">
+                                        saving goals
+                                    </div>
+                                </Link>
+                            </DrawerClose>
+                            <DrawerClose asChild>
+                                <Link
+                                    href={"/schedules"}
+                                    className="text-center">
+                                    <Image src={schedule} alt="schedule" width={48} height={48} className="hover:shadow-lg mx-auto peer" />
+                                    <div className="text-gray-500 font-semibold peer-active:text-indigo-500 active:text-indigo-500">
+                                        schedule
+                                    </div>
+                                </Link>
+                            </DrawerClose>
+                            <DrawerClose asChild>
+                                <Link
+                                    href={"/vidcall"}
+                                    className="text-center">
+                                    <Image src={vidcall} alt="vidcall" width={48} height={48} className="hover:shadow-lg mx-auto peer" />
+                                    <div className="text-gray-500 font-semibold peer-active:text-lime-500 active:text-lime-500">
+                                        video chat
+                                    </div>
+                                </Link>
+                            </DrawerClose>
                         </div>
                         <div className="max-w-sm mx-auto">
 

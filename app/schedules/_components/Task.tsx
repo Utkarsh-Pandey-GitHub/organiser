@@ -2,7 +2,7 @@
 import { DatePickerDemo } from '@/app/_components/DatePicker'
 import { PlaceholdersAndVanishInput } from '@/app/_components/placeholders-and-vanish-input'
 import { set } from 'date-fns'
-import { Eraser, Grip, Image, LinkIcon, Plus, SquareX } from 'lucide-react'
+import { Book, Eraser, Grip, Image, LinkIcon, Plus, SquareX } from 'lucide-react'
 import React, { use, useEffect, useState } from 'react'
 
 type TaskProps = {
@@ -95,13 +95,22 @@ function Task({ task, tasks, setTasks }: TaskProps) {
       <Eraser size={32} className='group-hover:visible invisible active:text-rose-500 '
       onClick={(e) => setErase(true)}
       />
+      <label htmlFor="image" className='flex '>
+
+      <Image size={16} className='group-hover:visible invisible 
+      active:text-amber-500 h-auto w-auto
+      ' />
+      </label>
+      <input type="file" name="image" id="image" className='hidden'/>
+
+      <LinkIcon size={32} className='group-hover:visible invisible active:text-indigo-700' />
       <input type="checkbox" className='mx-1'
         checked={task.checked}
         onChange={(e) => changeChecked(e.target.checked)}
       />
       <SquareX onClick={deleteTask} size={32} />
       
-      {(task.date && task.date <= (new Date)) &&
+      {(!task.checked&&task.date && task.date <= (new Date)) &&
         <span className="border border-rose-500 rounded-full px-4 text-sm text-rose-500 py-0.5">Due</span>}
 
 
