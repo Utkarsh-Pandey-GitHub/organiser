@@ -91,7 +91,7 @@ export function TestDrawer() {
                             </DrawerClose>
                             <DrawerClose asChild>
                                 <Link
-                                    href={"/vidcall"}
+                                    href={"/notes"}
                                     className="text-center">
                                     <Image src={note} alt="note" width={48} height={48} className="hover:shadow-lg mx-auto peer" />
                                     <div className="text-gray-500 font-semibold peer-active:text-emerald-500 active:text-emerald-500">

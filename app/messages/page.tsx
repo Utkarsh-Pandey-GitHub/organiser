@@ -17,11 +17,9 @@ function page() {
                         <ResizablePanel defaultSize={5}>
                             <UserListHeading />
                         </ResizablePanel>
-
                         <ResizablePanel>
-                            {/* <div className="bg-red-500 h-full flex justify-center place-items-center"> */}
                             <UserListItem />
-                            {/* </div> */}
+                            
                         </ResizablePanel>
                     </ResizablePanelGroup>
                 </ResizablePanel>
@@ -74,7 +72,7 @@ function page() {
                                     <div className="flex justify-center items-center h-16 w-full">
 
                                         <input type="text" className=" border-gray-300 rounded-lg py-2 px-4 w-full  mr-4 text-gray-800" placeholder="Type a message..." />
-                                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Send</button>
+                                        <button className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">Send</button>
                                     </div>
                                 </div>
                             </ResizablePanel>

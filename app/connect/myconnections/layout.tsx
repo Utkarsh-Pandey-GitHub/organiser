@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import NavBar from "./_components/NavBar";
+import NavBar from "../_components/NavBar";
+
 
 
 
@@ -13,18 +14,20 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-
+  msgslot
 
 }: Readonly<{
   children: React.ReactNode;
+  msgslot: React.ReactNode;
 
 
 }>) {
   return (
 
     <div className={`${inter.className} bg-neutral-900  text-white`}>
-      <NavBar />
+      
       {children}
+      {msgslot}
 
     </div>
 

@@ -12,9 +12,9 @@ function NavBar() {
 
 
   return (
-    <div className="flex gap-5 justify-around items-center w-auto  m-2 p-4 bg-opacity-40 rounded-3xl border border-white border-opacity-85">
+    <div className="flex gap-5 justify-around items-center w-auto  m-2 p-4 bg-opacity-40 rounded-3xl border border-white border-opacity-85 flex-wrap">
       <div></div>
-      <div className="flex ustify-center items-center gap-2 ">
+      <div className="flex justify-center items-center gap-2 flex-wrap">
         <Link href={"/"} className={`${path.endsWith('/')  ? "text-black bg-white font-semibold " : ""} rounded-full p-2`}>
           Explore
         </Link>
