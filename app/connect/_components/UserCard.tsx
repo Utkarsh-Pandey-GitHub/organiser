@@ -27,7 +27,10 @@ function UserCard() {
             </div>
             <div>
                 <div className='text-white font-semibold'>John Doe</div>
-                <div className='text-gray-400'>@johndoe</div>
+                <div 
+                className='text-gray-400'>@johndoe</div>
+                
+
             </div>
             {path.includes("myconnections")||path.includes("message")?
             <div className='flex gap-1'>
