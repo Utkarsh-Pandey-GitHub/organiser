@@ -27,9 +27,7 @@ function NavBar() {
         <Link href={"/schedules"} className={`${path.startsWith("/schedules") ? "text-black bg-white font-semibold" : ""} rounded-full p-2`}>
           Events
         </Link>
-        <Link href={"/saved"} className={`${path.startsWith("/saved") ? "text-black bg-white font-semibold" : ""} rounded-full p-2`}>
-          Saved
-        </Link>
+        
         <div className="bg-neutral-400 text-black">
           <TestDrawer />
         </div>

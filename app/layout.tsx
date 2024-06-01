@@ -6,6 +6,7 @@ import NavBar from "./_components/NavBar";
 import BottomBar from "./_components/BottomBar";
 import { BackgroundBeams } from "./_components/background-beams";
 import { ClerkProvider } from "@clerk/nextjs";
+import { SavedContextProvider } from "./_context/SavedContext";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -24,6 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
+      <SavedContextProvider>
     <html lang="en">
       <body className={`${inter.className} bg-neutral-900  text-white`}>
         
@@ -35,6 +37,7 @@ export default function RootLayout({
         
       </body>
     </html>
+    </SavedContextProvider>
     </ClerkProvider>
   );
 }

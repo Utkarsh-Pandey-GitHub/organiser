@@ -4,8 +4,10 @@ import Link from 'next/link'
 
 function page() {
   return (
-    <div className='container  '>
-      <div className=' flex flex-wrap justify-start'>
+    <div className='container  flex justify-center '>
+      <div className='flex justify-center '>
+
+<div className='flex flex-wrap justify-start    w-fit'>
 
 
         <UserCard />
@@ -18,7 +20,9 @@ function page() {
         <UserCard />
         <UserCard />
         <UserCard />
-        <UserCard />
+        </div>
+        {/* <UserCard /> */}
+        {/* <UserCard /> */}
 
       </div>
     </div>

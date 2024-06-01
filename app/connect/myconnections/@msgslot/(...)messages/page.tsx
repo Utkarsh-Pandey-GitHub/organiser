@@ -13,15 +13,16 @@ function page() {
 
     }
     const handleMaximize = (e: any) => {
-        router.refresh();
+        router.push('/');
+        router.push('/messages');
     }
     return (
         <Draggable>
-            <div className='absolute bg-gray-600  h-auto w-fit m-auto rounded-lg top-1/3 left-1/3 p-2 bg-opacity-90'>
+            <div className='absolute bg-gray-600  h-auto w-fit m-auto rounded-lg top-1/3 left-1/3 p-2 bg-opacity-85'>
                 <div className='absolute left-0 top-0 right-0 bg-gray-600 w-full flex p-1 rounded-lg justify-between place-items-center '>
                     <div className='flex place-items-center gap-2'>
 
-                        <UserCircle size={30} />
+                        <UserCircle size={40} className='float-left'/>
                         <div>
 
                             User Name
@@ -74,7 +75,7 @@ function page() {
                         </li>
 
                     </ul>
-                    <div className="flex justify-center items-center h-fit fixed bottom-0">
+                    <div className="flex justify-center items-center h-fit fixed bottom-1">
 
                         <input type="text" className="border border-gray-300 rounded-lg py-1 px-2 w-full max-w-lg mr-4 text-black" placeholder="Type a message..." />
                         <button className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-1 px-2 rounded">Send</button>

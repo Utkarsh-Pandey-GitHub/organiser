@@ -13,7 +13,7 @@
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-popover": "^1.0.7",
     "@radix-ui/react-slot": "^1.0.2",
-    "@stream-io/video-react-sdk": "^1.0.12",
+    "@stream-io/video-react-sdk": "^1.0.15",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "date-fns": "^3.6.0",
@@ -26,6 +26,7 @@
     "react-draggable": "^4.4.6",
     "react-resizable-panels": "^2.0.19",
     "recharts": "^2.12.6",
+    "socket.io-client": "^4.7.5",
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^0.9.0"
