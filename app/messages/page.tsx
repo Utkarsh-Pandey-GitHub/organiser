@@ -19,24 +19,24 @@ function page() {
                         </ResizablePanel>
                         <ResizablePanel>
                             <UserListItem />
-                            
+
                         </ResizablePanel>
                     </ResizablePanelGroup>
                 </ResizablePanel>
-                <ResizableHandle withHandle className='bg-gray-100 bg-opacity-30 rounded-t-lg '/>
+                <ResizableHandle withHandle className='bg-gray-100 bg-opacity-30 rounded-t-lg ' />
                 <ResizablePanel>
                     <div className=" h-full ">
                         <ResizablePanelGroup direction='vertical'>
                             <ResizablePanel defaultSize={5} className='rounded-l-full'>
                                 <div className="bg-gray-100 bg-opacity-30 h-full flex justify-start place-items-center font-semibold">
-                                <img
-                                    className="w-12 h-12 rounded-full object-cover mr-4  hover:scale-125"
-                                    src="https://randomuser.me/api/portraits/women/72.jpg"
-                                    alt="User avatar"
+                                    <img
+                                        className="w-12 h-12 rounded-full object-cover mr-4  hover:scale-125"
+                                        src="https://randomuser.me/api/portraits/women/72.jpg"
+                                        alt="User avatar"
                                     />
 
                                     Peer Name
-                                    </div>
+                                </div>
                             </ResizablePanel>
                             <ResizablePanel>
                                 <div className=" flex   justify-evenly h-full">

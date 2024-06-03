@@ -57,25 +57,25 @@ function Task({ task, tasks, setTasks }: TaskProps) {
           acc.push(curr)
         }
         return acc
-      },[]
+      }, []
       ))
   }
   function deleteTask() {
     // changeChecked(true)
     setTimeout(() => {
-      setTasks((prev :any)=> tasks.filter((t) => t != task))
+      setTasks((prev: any) => tasks.filter((t) => t != task))
     }, 500);
   }
 
-  
+
 
   return (
     <div className='flex text-white rounded-lg  w-fit gap-1 place-items-center group my-1'>
-     
 
-      <Plus size={32} onClick={addTask} className='group-hover:visible invisible '/>
-      <Grip size={32} className='group-hover:visible invisible  '/>
-      
+
+      <Plus size={32} onClick={addTask} className='group-hover:visible invisible ' />
+      <Grip size={32} className='group-hover:visible invisible  ' />
+
       {/* <input type="text" className={`text-inherit ml-2   rounded-lg  bg-white bg-opacity-30 px-2 min-w-sm min-w-80 ${checked&&text&&'line-through'}`}
         value={text}
         onChange={(e) => setText(e.target.value)}
@@ -93,15 +93,15 @@ function Task({ task, tasks, setTasks }: TaskProps) {
         <DatePickerDemo date={task.date} setDate={changeDate as any} />
       </div>
       <Eraser size={32} className='group-hover:visible invisible active:text-rose-500 '
-      onClick={(e) => setErase(true)}
+        onClick={(e) => setErase(true)}
       />
       <label htmlFor="image" className='flex '>
 
-      <Image size={16} className='group-hover:visible invisible 
+        <Image size={16} className='group-hover:visible invisible 
       active:text-amber-500 h-auto w-auto
       ' />
       </label>
-      <input type="file" name="image" id="image" className='hidden'/>
+      <input type="file" name="image" id="image" className='hidden' />
 
       <LinkIcon size={32} className='group-hover:visible invisible active:text-indigo-700' />
       <input type="checkbox" className='mx-1'
@@ -109,8 +109,8 @@ function Task({ task, tasks, setTasks }: TaskProps) {
         onChange={(e) => changeChecked(e.target.checked)}
       />
       <SquareX onClick={deleteTask} size={32} />
-      
-      {(!task.checked&&task.date && task.date <= (new Date)) &&
+
+      {(!task.checked && task.date && task.date <= (new Date)) &&
         <span className="border border-rose-500 rounded-full px-4 text-sm text-rose-500 py-0.5">Due</span>}
 
 

@@ -6,7 +6,8 @@ import NavBar from "./_components/NavBar";
 import BottomBar from "./_components/BottomBar";
 import { BackgroundBeams } from "./_components/background-beams";
 import { ClerkProvider } from "@clerk/nextjs";
-import { SavedContextProvider } from "./_context/SavedContext";
+import { UserProvider } from "./_context/UserProvider";
+
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -18,26 +19,26 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  
+
 }: Readonly<{
   children: React.ReactNode;
-  
+
 }>) {
   return (
     <ClerkProvider>
-      <SavedContextProvider>
-    <html lang="en">
-      <body className={`${inter.className} bg-neutral-900  text-white`}>
-        
-        <NavBar />
-        {children}
-        
-        <BottomBar />
-        
-        
-      </body>
-    </html>
-    </SavedContextProvider>
+      <UserProvider>
+        <html lang="en">
+          <body className={`${inter.className} bg-neutral-900  text-white`}>
+
+            <NavBar />
+            {children}
+
+            <BottomBar />
+
+
+          </body>
+        </html>
+        </UserProvider>
     </ClerkProvider>
   );
 }
