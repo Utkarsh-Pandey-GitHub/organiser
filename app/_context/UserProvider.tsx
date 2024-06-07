@@ -14,7 +14,7 @@ export function UserProvider({
 }:{
     children: React.ReactNode
 }){
-    const [currentUser, setCurrentUser] = useState();
+    const [currentUser, setCurrentUser] = useState<any>();
     const {isSignedIn,isLoaded,user}= useUser();
     useEffect(()=>{
         if(!isSignedIn || !isLoaded) return;
@@ -23,6 +23,7 @@ export function UserProvider({
         .then((data:any)=>{
             if (data) {
                 
+            if(!currentUser){
                 setCurrentUser(data);
             }
             else{
@@ -34,15 +35,15 @@ export function UserProvider({
                     console.log(error)
                 })
             }
-        })
+        }})
         .then(()=>{
             console.log(currentUser);
         })
         .catch((error:any)=>{
             console.log(error);
         })
-
-    },[user])
+        console.log(user);
+    },[user,currentUser])
     return (
         <currentUserContext.Provider value={[currentUser,setCurrentUser] as any}>
             {children}
