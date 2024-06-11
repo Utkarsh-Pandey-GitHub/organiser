@@ -24,6 +24,8 @@ function Task({ task, tasks, setTasks }: TaskProps) {
 
   }
   function changeDate(date: Date) {
+    console.log(task.date);
+    
     setTasks(
       tasks.reduce((acc, curr) => {
         if (curr == task) {
@@ -81,6 +83,18 @@ function Task({ task, tasks, setTasks }: TaskProps) {
         onChange={(e) => setText(e.target.value)}
         placeholder={'So the task is...'}
       /> */}
+      <Eraser size={32} className='group-hover:visible invisible active:text-rose-500 '
+        onClick={(e) => setErase(true)}
+      />
+      <label htmlFor="image" className='flex '>
+
+        <Image size={16} className='group-hover:visible invisible 
+      active:text-amber-500 h-auto w-auto
+      ' />
+      </label>
+      
+
+      <LinkIcon size={32} className='group-hover:visible invisible active:text-indigo-700' />
       <PlaceholdersAndVanishInput
         value={task.text}
         setValue={changeText}
@@ -91,27 +105,16 @@ function Task({ task, tasks, setTasks }: TaskProps) {
       <div className=''>
 
         <DatePickerDemo date={task.date} setDate={changeDate as any} />
+        {/* <input type="datetime-local" name="" id="" defaultValue={task.date} onChange={changeDate as any} className='text-black rounded-lg'/> */}
       </div>
-      <Eraser size={32} className='group-hover:visible invisible active:text-rose-500 '
-        onClick={(e) => setErase(true)}
-      />
-      <label htmlFor="image" className='flex '>
-
-        <Image size={16} className='group-hover:visible invisible 
-      active:text-amber-500 h-auto w-auto
-      ' />
-      </label>
-      <input type="file" name="image" id="image" className='hidden' />
-
-      <LinkIcon size={32} className='group-hover:visible invisible active:text-indigo-700' />
       <input type="checkbox" className='mx-1'
         checked={task.checked}
         onChange={(e) => changeChecked(e.target.checked)}
       />
       <SquareX onClick={deleteTask} size={32} />
 
-      {(!task.checked && task.date && task.date <= (new Date)) &&
-        <span className="border border-rose-500 rounded-full px-4 text-sm text-rose-500 py-0.5">Due</span>}
+      
+        <span className={`border border-rose-500 rounded-full px-4 text-sm text-rose-500 py-0.5 ${(!task.checked && task.date < new Date())?"visible":"invisible"}`}>Due</span>
 
 
     </div>

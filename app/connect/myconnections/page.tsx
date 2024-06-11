@@ -7,7 +7,7 @@ function page() {
     <div className='container  flex justify-center '>
       <div className='flex justify-center '>
 
-<div className='flex flex-wrap justify-start    w-fit'>
+<div className='flex flex-wrap justify-start    w-fit '>
 
 
         <UserCard />

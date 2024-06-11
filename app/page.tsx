@@ -19,8 +19,8 @@ export default function Home() {
       <div className=" relative z-10  lg:text-9xl sm:text-2xl text-md  bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600  text-start font-sans font-bold m-16">
 
 
+          Organize 
         <div className="flex p-4">
-          Organize
           your
           <FlipWords words={words} duration={3000} classNames={colorClasses} />
 
