@@ -1,31 +1,37 @@
 "use client"
-import {  AtSign, Bookmark, Paperclip, Send, Star, User, VideoIcon } from 'lucide-react'
+import { useCurrentUser } from '@/app/_context/UserProvider';
+import {  AtSign, Bookmark, Handshake, Paperclip, Send, Star, User, VideoIcon } from 'lucide-react'
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React from 'react'
 
-function UserCard() {
+type props={
+    user:any
+}
+function UserCard({user}:props) {
     const path = usePathname();
+    const {currentUser}=useCurrentUser() as any;
     
     const [save,setSave] = React.useState(false)
     
     return (
         <div className='flex w-40 bg-white bg-opacity-10 p-4 place-items-center justify-center rounded-lg flex-col m-2 hover:shadow hover:shadow-white shrink max-w-1/4 grow '>
-            <div className='rounded-full p-2 bg-white w-fit h-fit bg-opacity-20 '>
-                <User size='40' />
+            <div className='flex justify-center items-center rounded-full p-0.5 bg-white w-14 h-14 bg-opacity-10 group'>
+                {user.dp_link?<img src={user.dp_link} className='rounded-full group-hover:scale-105'/>:<User size='40' />}
+                
             </div>
-            <div>
-                <div className='text-white font-semibold'>John Doe</div>
+            <div className='mb-1 max-w-full  '>
+                <div className='text-white font-semibold flex justify-center peer'>{user.name}</div>
                 <div 
-                className='text-gray-400'>@johndoe</div>
+                className='text-gray-400 text-xs flex text-wrap  overflow-hidden justify-center'>{user.friends.filter((friend:any)=>currentUser.friends.includes(friend)).length} mutual friends</div>
                 
 
             </div>
             {path.includes("myconnections")||path.includes("message")?
             <div className='flex gap-1'>
-                <Link href={"/messages"} className='flex place-items-center'>
-                <Send size='25' className=' hover:text-opacity-100 text-opacity-40 text-white'/>
+                <Link href={"/messages"} className='flex place-items-center '>
+                <Send size='25' className=' hover:text-opacity-100 text-opacity-40 text-white peer'/>
                 </Link>
                 <Link href={"/vidcall"} className='flex place-items-center'>
                 <VideoIcon size='35' className='hover:text-opacity-100 text-opacity-40 text-white'/>
@@ -40,7 +46,10 @@ function UserCard() {
             </div>
             :
             <div>
-                <button className='bg-indigo-700 bg-opacity-50 text-white rounded-full p-2 focus:bg-opacity-90 active:bg-opacity-90 active:bg-white active:text-indigo-700 focus:bg-white focus:text-indigo-700 focus:font-bold'>Connect</button>
+                <button className='flex gap-1 items-center justify-center bg-indigo-700 bg-opacity-50 text-white rounded-full p-2 focus:bg-opacity-90 active:bg-opacity-90 active:bg-white active:text-indigo-700 focus:bg-white focus:text-indigo-700 focus:font-bold'>
+                    <Handshake size='20' className='ml-1'/>
+                    Connect
+                </button>
             </div>}
 
         </div>
