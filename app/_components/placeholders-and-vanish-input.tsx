@@ -36,7 +36,7 @@ export function PlaceholdersAndVanishInput({
 
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const newDataRef = useRef<any[]>([]);
-    const inputRef = useRef<HTMLInputElement>(null);
+    const inputRef = useRef<HTMLTextAreaElement>(null);
 
     const [animating, setAnimating] = useState(false);
 
@@ -166,11 +166,23 @@ export function PlaceholdersAndVanishInput({
         // vanishAndSubmit();
         // onSubmit && onSubmit(e);
     };
-    useEffect(() => {  
+    useEffect(() => {
         if (trigger && !animating) {
             vanishAndSubmit();
         }
-     }, [trigger]);
+    }, [trigger]);
+
+
+    useEffect(() => {
+        if (inputRef.current) {
+            inputRef.current.style.height = 'auto';
+            inputRef.current.style.height = `${inputRef.current.scrollHeight}px`;
+        }
+    }, [value]);
+
+    const handleChange = (event: any) => {
+        setValue(event.target.value);
+    };
     return (
         <form
             className={cn(
@@ -187,7 +199,7 @@ export function PlaceholdersAndVanishInput({
                 )}
                 ref={canvasRef}
             />
-            <input
+            {/* <input
                 onChange={(e) => {
                     if (!animating) {
                         setValue(e.target.value);
@@ -203,9 +215,29 @@ export function PlaceholdersAndVanishInput({
                     animating && "text-transparent dark:text-transparent",
                     lineStrike && "line-through"
                 )}
+            /> */}
+            <textarea
+                ref={inputRef}
+                value={value}
+                onChange={(e: any) => {
+                    if (!animating) {
+                        setValue(e.target.value);
+                        onChange && onChange(e);
+                    }
+                    handleChange(e);
+                }}
+                className={cn(
+                    "w-fit relative text-sm sm:text-base z-50 border-none text-white bg-transparent  h-full rounded-full focus:outline-none focus:ring-0 p-1 place-self-center",
+                    animating && "text-transparent dark:text-transparent",
+                    lineStrike && "line-through"
+                )}
+                rows={1}
+                placeholder=""
+                style={{ resize: 'none', overflow: 'hidden' }}
             />
 
-            
+
+
             <div className="absolute inset-0 flex items-center rounded-full pointer-events-none">
                 <AnimatePresence mode="wait">
                     {!value && (

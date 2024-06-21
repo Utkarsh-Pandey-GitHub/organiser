@@ -25,7 +25,7 @@ function Task({ task, tasks, setTasks }: TaskProps) {
   }
   function changeDate(date: Date) {
     console.log(task.date);
-    
+
     setTasks(
       tasks.reduce((acc, curr) => {
         if (curr == task) {
@@ -72,29 +72,30 @@ function Task({ task, tasks, setTasks }: TaskProps) {
 
 
   return (
-    <div className='flex text-white rounded-lg  w-fit gap-1 place-items-center group my-1'>
+    <div className='flex text-white rounded-lg  w-fit gap-1 place-items-center group my-1 items-start'>
 
-
-      <Plus size={32} onClick={addTask} className='group-hover:visible invisible ' />
-      <Grip size={32} className='group-hover:visible invisible  ' />
-
-      {/* <input type="text" className={`text-inherit ml-2   rounded-lg  bg-white bg-opacity-30 px-2 min-w-sm min-w-80 ${checked&&text&&'line-through'}`}
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        placeholder={'So the task is...'}
-      /> */}
-      <Eraser size={32} className='group-hover:visible invisible active:text-rose-500 '
-        onClick={(e) => setErase(true)}
-      />
-      <label htmlFor="image" className='flex '>
+      <div>
+        <Plus size={16} onClick={addTask} className='group-hover:visible invisible ' />
+      </div>
+      <div>
+        <Grip size={16} className='group-hover:visible invisible  ' />
+      </div>
+      <div>
+        <Eraser size={16} className='group-hover:visible invisible active:text-rose-500 '
+          onClick={(e) => setErase(true)}
+        />
+      </div>
+      <label htmlFor="image" className='flex w-fit h-fit '>
 
         <Image size={16} className='group-hover:visible invisible 
       active:text-amber-500 h-auto w-auto
       ' />
       </label>
-      
 
-      <LinkIcon size={32} className='group-hover:visible invisible active:text-indigo-700' />
+      <div>
+
+      <LinkIcon size={16} className='group-hover:visible invisible active:text-indigo-700' />
+      </div>
       <PlaceholdersAndVanishInput
         value={task.text}
         setValue={changeText}
@@ -111,10 +112,13 @@ function Task({ task, tasks, setTasks }: TaskProps) {
         checked={task.checked}
         onChange={(e) => changeChecked(e.target.checked)}
       />
-      <SquareX onClick={deleteTask} size={32} />
+      <div>
 
-      
-        <span className={`border border-rose-500 rounded-full px-4 text-sm text-rose-500 py-0.5 ${(!task.checked && task.date < new Date())?"visible":"invisible"}`}>Due</span>
+      <SquareX onClick={deleteTask} size={16} />
+      </div>
+
+
+      <span className={`border border-rose-500 rounded-full px-4 text-sm text-rose-500 py-0.5 ${(!task.checked && task.date < new Date()) ? "visible" : "invisible"}`}>Due</span>
 
 
     </div>

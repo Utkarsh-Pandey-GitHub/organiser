@@ -10,7 +10,9 @@ export function useUsers() {
 }
 
 function UsersProvider({ children }: { children: React.ReactNode }) {
-  const [users, setUsers] = useState()
+  const [users, setUsers] = useState();
+  const [chatRecieverUser,setChatRecieverUser]=useState();
+  const [chatRecieverGroup,setChatRecieverGroup]=useState();
   const { isSignedIn, isLoaded, user } = useUser();
   const {currentUser}=useCurrentUser() as any;
   useEffect(() => {
@@ -32,7 +34,7 @@ function UsersProvider({ children }: { children: React.ReactNode }) {
 
 
   return (
-    <UsersContext.Provider value={{ users } as any}>
+    <UsersContext.Provider value={{ users, chatRecieverUser,setChatRecieverUser, chatRecieverGroup,setChatRecieverGroup} as any}>
       {children}
     </UsersContext.Provider>
   )

@@ -10,13 +10,16 @@ import UserListHeading from '../_components/users/UserListHeading'
 import { useChatSocket } from '../_context/ChatSocketProvider'
 import { AnyARecord } from 'dns'
 import { useCurrentUser } from '../_context/UserProvider'
+import { useUsers } from '../_context/UsersProvider'
 
 
 function page() {
     const { socket, messages, setMessages, setRecieveOnline } = useChatSocket();
     const {currentUser}  = useCurrentUser() as any;
     const [currentMessage, setCurrentMessage] = React.useState<any>('');
-    const [currentChat, setCurrentChat] = React.useState<any>('');
+    
+    
+    const {chatRecieverUser, setChatRecieverUser} = useUsers() as any;
     const [category,setCategory] = React.useState<any>({
         friends:true,
         groups:false,
@@ -33,7 +36,7 @@ function page() {
         const element = document.getElementById('scrollId');
         element?.scrollIntoView({ behavior: 'smooth' });
     }, [messages])
-
+    console.log(currentUser)
     
     return (
         <div className='mx-5 '>
@@ -45,25 +48,26 @@ function page() {
                         </ResizablePanel>
                         <ResizablePanel defaultSize={95}>
                            
-                            {category.friends?<UserListItem contacts={currentUser?.expand?.friends} currentChat switchcurrentChat/>:
-                            <UserListItem contacts={currentUser?.expand?.groups} currentChat switchcurrentChat/>}
+                            {category.friends?<UserListItem contacts={currentUser?.expand?.friends}  />:
+                            <UserListItem contacts={currentUser?.expand?.groups} />}
 
                         </ResizablePanel>
                     </ResizablePanelGroup>
                 </ResizablePanel>
                 <ResizableHandle withHandle className='bg-gray-100 bg-opacity-30 rounded-t-lg ' />
                 <ResizablePanel defaultSize={75}>
-                    <div className=" h-full ">
+
+                    {chatRecieverUser?<div className=" h-full ">
                         <ResizablePanelGroup direction='vertical'>
                             <ResizablePanel defaultSize={5} className='rounded-l-full'>
                                 <div className="bg-gray-100 bg-opacity-30 h-full flex justify-start place-items-center font-semibold">
                                     <img
                                         className="w-12 h-12 rounded-full object-cover mr-4  hover:scale-125"
-                                        src="https://randomuser.me/api/portraits/women/72.jpg"
-                                        alt="currentUser avatar"
+                                        src={chatRecieverUser?.dp_link}
+                                        alt=""
                                     />
 
-                                    {currentUser?.name}
+                                    {chatRecieverUser?.name}
                                 </div>
                             </ResizablePanel>
                             <ResizablePanel defaultSize={95}>
@@ -113,7 +117,7 @@ function page() {
                                 </div>
                             </ResizablePanel>
                         </ResizablePanelGroup>
-                    </div>
+                    </div>:<div className="h-full flex justify-center items-center">Please select a chat</div>}
                 </ResizablePanel>
 
             </ResizablePanelGroup>

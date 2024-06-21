@@ -8,6 +8,11 @@ import { BackgroundBeams } from "./_components/background-beams";
 import { ClerkProvider } from "@clerk/nextjs";
 import { UserProvider } from "./_context/UserProvider";
 import UsersProvider from "./_context/UsersProvider";
+import { Toaster } from "@/components/ui/sonner"
+
+        
+   
+
 
 
 
@@ -35,10 +40,11 @@ export default function RootLayout({
 
               <NavBar />
               {children}
+              <Toaster />
 
               <BottomBar />
 
-
+              
             </body>
           </html>
         </UsersProvider>

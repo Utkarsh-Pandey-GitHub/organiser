@@ -1,6 +1,7 @@
 "use client"
 import { useChatSocket } from '@/app/_context/ChatSocketProvider';
 import { useCurrentUser } from '@/app/_context/UserProvider';
+import { useUsers } from '@/app/_context/UsersProvider';
 import { Maximize2, UserCircle, X } from 'lucide-react';
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
@@ -12,7 +13,7 @@ function page() {
     const { socket, messages, setMessages } = useChatSocket();
     const [currentMessage, setCurrentMessage] = useState<any>('');
     const { currentUser } = useCurrentUser() as any;
-
+    const { chatRecieverUser } = useUsers() as any;
 
     const handleClick = (e: any) => {
 
@@ -25,7 +26,7 @@ function page() {
     }
     function sendMessage() {
         // socket.emit('message', {message:'Hello',to:'@msgslot'})
-        socket.emit('message',   currentMessage,  {name:currentUser.name.split(' ')[0],email:currentUser.email},  '@msgslot',  "@msgslot" );
+        socket.emit('message', currentMessage, { name: currentUser.name.split(' ')[0], email: currentUser.email }, '@msgslot', "@msgslot");
         // setMessages([...messages, { msg: currentMessage, sender: 'user', reciever: 'reciever' }])
         const element = document.getElementById('scrollId');
         element?.scrollIntoView({ behavior: 'smooth' });
@@ -42,14 +43,17 @@ function page() {
                 <div className='absolute left-0 top-0 right-0 bg-black bg-opacity-80 w-full flex p-1 rounded-lg justify-between place-items-center '>
                     <div className='flex place-items-center gap-2'>
 
-                        <UserCircle size={40} className='float-left' />
+                        {chatRecieverUser ?
+                            <div className='w-10 h-10 rounded-full'>
+                                <img src={`${chatRecieverUser.dp_link}`} alt="" className='w-auto h-auto rounded-full' />
+                            </div>
+                            : <UserCircle size={40} className='float-left' />}
                         <div>
 
-                            User Name
+                            {chatRecieverUser ? chatRecieverUser.name : "User"}
                         </div>
                     </div>
                     <div className='flex gap-1'>
-
                         <div onClick={handleMaximize} className=' text-white focus:text-cyan-600  active:text-cyan-600 ' id="messages_link">
                             <Maximize2 size={20} />
                         </div>
@@ -67,7 +71,7 @@ function page() {
                             </div>
                         </li>
 
-                        {messages && messages.map((message: any,index:any) => {
+                        {messages && messages.map((message: any, index: any) => {
                             return (
                                 <div key={index}>
                                     <div>
@@ -77,12 +81,12 @@ function page() {
                                         <div className="bg-gray-100 rounded-lg px-4 py-2 max-w-[80%]">
                                             <p className="text-gray-900 text-sm">{message.msg}</p>
                                         </div>
-                                    </li>:<li className="flex justify-start">
+                                    </li> : <li className="flex justify-start">
                                         <div className="bg-black bg-opacity-35 rounded-lg px-4 py-2 max-w-[80%]">
                                             <p className="text-white text-sm">{message.msg}</p>
                                         </div>
                                     </li>}
-                            </div>)
+                                </div>)
                         })}
                         <li id='scrollId' className='h-0'></li>
 
