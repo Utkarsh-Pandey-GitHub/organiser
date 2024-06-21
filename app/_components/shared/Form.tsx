@@ -66,7 +66,7 @@ const page: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center mt-10 w-full h-fit text-slate-900 px-2">
-      <img src={currentUser.profile_picture?dp:currentUser.dp_link} alt="Profile" className="w-24 h-24 rounded-full mb-4 bg-cover aspect-auto" />
+      <img src={currentUser.profile_picture?dp:currentUser.dp_link} alt="Profile" className="w-24 h-24 rounded-full mb-4 object-cover " />
       
       <h1 className="text-3xl font-bold mb-6 text-white">Update your details</h1>
       <form className="w-full max-w-lg space-y-6 " onSubmit={handleSubmit}>

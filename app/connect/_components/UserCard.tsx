@@ -29,8 +29,8 @@ function UserCard({ user }: props) {
 
     return (
         <div className='flex w-40 bg-white bg-opacity-10 p-4 place-items-center justify-center rounded-lg flex-col m-2 hover:shadow hover:shadow-white shrink max-w-1/4 grow '>
-            <div className='flex justify-center items-center rounded-full p-0.5 bg-white w-14 h-14 bg-opacity-10 group'>
-                {user.dp_link ? <img src={user.profile_picture?dp:user.dp_link} className='rounded-full group-hover:scale-105 bg-cover aspect-auto' /> : <User size='40' />}
+            <div className='flex justify-center items-center rounded-full p-0.5 bg-white w-24 h-24 bg-opacity-10 group'>
+                {user.dp_link ? <img src={user.profile_picture?dp:user.dp_link} className='rounded-full group-hover:scale-105 object-cover aspect-auto w-full h-full' /> : <User size='40' />}
 
             </div>
             <div className='mb-1 max-w-full  '>
