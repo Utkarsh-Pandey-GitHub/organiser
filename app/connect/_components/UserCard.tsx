@@ -18,7 +18,7 @@ function UserCard({ user }: props) {
     const [dp,setDp]  = useState<any>();
 
     useEffect(() => {
-        getUrl(currentUser.profile_picture,currentUser).then((url)=>{
+        getUrl(user.profile_picture,user).then((url)=>{
             setDp(url);
         })
       
@@ -30,7 +30,7 @@ function UserCard({ user }: props) {
     return (
         <div className='flex w-40 bg-white bg-opacity-10 p-4 place-items-center justify-center rounded-lg flex-col m-2 hover:shadow hover:shadow-white shrink max-w-1/4 grow '>
             <div className='flex justify-center items-center rounded-full p-0.5 bg-white w-14 h-14 bg-opacity-10 group'>
-                {user.dp_link ? <img src={currentUser.profile_picture?dp:currentUser.dp_link} className='rounded-full group-hover:scale-105' /> : <User size='40' />}
+                {user.dp_link ? <img src={user.profile_picture?dp:user.dp_link} className='rounded-full group-hover:scale-105' /> : <User size='40' />}
 
             </div>
             <div className='mb-1 max-w-full  '>

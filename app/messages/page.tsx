@@ -28,10 +28,10 @@ function page() {
     function sendMessage() {
         socket.emit('message',   currentMessage,  {name:currentUser.name.split(' ')[0],email:currentUser.email},  '@msgslot',  "@msgslot" );
     }
-    function switchcurrentChat(chatId: any) {
-        setCurrentChat(chatId);
-        socket.emit('switch-chat', chatId);
-    }
+    // function switchcurrentChat(chatId: any) {
+    //     setCurrentChat(chatId);
+    //     socket.emit('switch-chat', chatId);
+    // }
     useEffect(() => {
         const element = document.getElementById('scrollId');
         element?.scrollIntoView({ behavior: 'smooth' });
