@@ -3,8 +3,8 @@ import React, { useEffect } from 'react'
 
 type UserListItemProps = {
     contacts: any[],
-    chatRecieverUser: any,
-    switchcurrentChat: any
+    
+    switchcurrentChat?: any
 }
 
 function UserListItem({ contacts }: UserListItemProps) {
