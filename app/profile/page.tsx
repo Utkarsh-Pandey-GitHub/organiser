@@ -1,13 +1,13 @@
 "use client"
 import Image from 'next/image'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useCurrentUser } from '../_context/UserProvider'
 import { SparklesCore } from '@/components/ui/sparkles'
 import { Cake, Calendar, Github, Linkedin, Mail, Newspaper,User, Star, Users } from 'lucide-react'
 
 import Loader from '@/public/loader.svg';
 import { useRouter } from 'next/navigation'
-import { saveProfile } from '../_backend_actions/actions'
+import { getUrl, saveProfile } from '../_backend_actions/actions'
 import Link from 'next/link'
 
 
@@ -23,6 +23,14 @@ function page() {
       <Image src={Loader} alt='loader' height={144} width={144} />
     </div>
   )
+  const [dp, setDp] = useState<string|any>()
+  useEffect(() => {
+    if(currentUser?.profile_picture){
+      getUrl(currentUser.profile_picture, currentUser).then((url: any) => {
+        setDp(url);
+      })
+    }
+  },[currentUser?.profile_picture])
   return (
     <div className='h-screen flex flex-col m-1 '>
 
@@ -30,7 +38,7 @@ function page() {
 
       <div className='flex justify-center items-center'>
         <div className='flex flex-col items-center bg-cover w-full absolute' >
-          <img src={currentUser.profile_picture ? currentUser.profile_picture : currentUser.dp_link} alt='volcano' width={200} height={200} className='rounded-full w-32 h-32' />
+          <img src={currentUser.profile_picture ? dp : currentUser.dp_link} alt='volcano' width={200} height={200} className='rounded-full w-32 h-32 object-cover' />
           <h1 className='text-2xl font-bold'>{currentUser?.name}</h1>
           <p className='text-sm'>{currentUser?.email}</p>
         </div>

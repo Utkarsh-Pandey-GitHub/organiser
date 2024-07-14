@@ -1,6 +1,6 @@
 "use client"
 import * as React from "react"
-import { Minus, Plus } from "lucide-react"
+import { Boxes, Minus, Plus } from "lucide-react"
 import { Bar, BarChart, ResponsiveContainer } from "recharts"
 import chat from "@/public/chat.png"
 import note from "@/public/note.png"
@@ -70,7 +70,11 @@ export function TestDrawer() {
         <div className="bg-neutral-900 text-black">
             <Drawer >
                 <DrawerTrigger asChild>
-                    <div className="text-white active:text-blue-600">Productivity</div>
+                    <div className="flex">
+
+                        <Boxes className="mx-1 text-white active:text-blue-600" />
+                        <div className="text-white active:text-blue-600 sm:block hidden">Productivity</div>
+                    </div>
                 </DrawerTrigger>
                 <DrawerContent>
                     <div className="mx-auto w-full  text-slate-600 ">

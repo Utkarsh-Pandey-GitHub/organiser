@@ -9,6 +9,7 @@ type UserListItemProps = {
 
 function UserListItem({ contacts }: UserListItemProps) {
     const {chatRecieverUser,setChatRecieverUser, chatRecieverGroup,setChatRecieverGroup}=useUsers() as any;
+    
     useEffect(() => {
       console.log(contacts)
     

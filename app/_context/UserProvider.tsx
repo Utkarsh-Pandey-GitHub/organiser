@@ -16,6 +16,7 @@ export function UserProvider({
 }) {
     const [currentUser, setCurrentUser] = useState<any>();
     const { isSignedIn, isLoaded, user } = useUser();
+    
     useEffect(() => {
         if (!isSignedIn || !isLoaded) return;
         

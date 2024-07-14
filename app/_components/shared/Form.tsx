@@ -12,7 +12,7 @@ import { getUrl, saveProfile } from '@/app/_backend_actions/actions';
 
 function Submit() {
   const { pending, data, method, action } = useFormStatus();
-  
+
 
   return <button disabled={pending} className={`w-full px-3 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-600 mt-4 flex items-center justify-center ${pending && "opacity-30"}`}>{!pending ? "Save" : "Saving ...."}</button>
 }
@@ -21,23 +21,23 @@ const page: React.FC = () => {
   if (!currentUser) {
     return null;
   }
-  const [dp,setDp]  = useState<any>();
+  const [dp, setDp] = useState<any>();
   const [currImage, setCurrImage] = useState();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    if(name=="profile_picture"&&e.target.files){
+    if (name == "profile_picture" && e.target.files) {
       setCurrentUser({
         ...currentUser,
         [name]: e?.target?.files[0],
       });
     }
-    else{
+    else {
       setCurrentUser({
         ...currentUser,
         [name]: value
       });
     }
-    
+
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -54,20 +54,27 @@ const page: React.FC = () => {
     console.log("currentUser");
     console.log(currentUser);
   };
-  
-    useEffect(() => {
-      getUrl(currentUser.profile_picture,currentUser).then((url)=>{
-          setDp(url);
-      })
-    
-      
-    }, [currentUser?.profile_picture])
-    
+  const removeImage = () => {
+    setCurrImage(undefined);
+    setCurrentUser({
+      ...currentUser,
+      profile_picture: null
+    })
+
+  }
+  useEffect(() => {
+    getUrl(currentUser.profile_picture, currentUser).then((url) => {
+      setDp(url);
+    })
+
+
+  }, [currentUser?.profile_picture])
+
 
   return (
     <div className="flex flex-col items-center mt-10 w-full h-fit text-slate-900 px-2">
-      <img src={currentUser.profile_picture?dp:currentUser.dp_link} alt="Profile" className="w-24 h-24 rounded-full mb-4 object-cover " />
-      
+      <img src={currentUser.profile_picture ? dp : currentUser.dp_link} alt="Profile" className="w-24 h-24 rounded-full mb-4 object-cover " />
+
       <h1 className="text-3xl font-bold mb-6 text-white">Update your details</h1>
       <form className="w-full max-w-lg space-y-6 " onSubmit={handleSubmit}>
         <div className="flex items-center space-x-2">
@@ -101,23 +108,15 @@ const page: React.FC = () => {
               accept='image/* '
             />
             {currImage &&
-              <div className={`aspect-auto picture-cover ${currImage!=undefined && "sm:w-1/3" }`}>
+              <div className={`aspect-auto picture-cover ${currImage != undefined && "sm:w-1/3"}`}>
                 <img src={currImage ? currImage : ""} alt="" className='' />
-              </div>}
+              </div> }
+
+              <button className='px-3 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-600 mt-4 flex items-center justify-center place-self-end ml-5' onClick={removeImage}> remove dp</button>
+            
           </div>
         </div>
-        <div className="flex items-center space-x-2">
-          <Mail className="w-6 h-6 text-gray-300" />
-          <input
-            type="email"
-            name="email"
-            value={currentUser?.email}
-            onChange={handleChange}
-            placeholder="Email"
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
 
-          />
-        </div>
         <div className="flex items-center space-x-2">
           <Calendar className="w-6 h-6 text-gray-300" />
           <input
