@@ -37,12 +37,15 @@ export default function RootLayout({
       <UserProvider>
         <UsersProvider>
           <html lang="en">
-            <body className={`${inter.className} bg-neutral-900  text-white`}>
+            <body className={`${inter.className} bg-neutral-900 object-cover bg-cover text-white`}
+            // style={{backgroundImage: "url('https://images.pexels.com/photos/163811/street-art-shipping-container-freight-highway-163811.jpeg?auto=compress&cs=tinysrgb&w=600')"}}
+            >
               
 
               <NavBar />
               {children}
               <Toaster />
+              
 
               <BottomBar />
 

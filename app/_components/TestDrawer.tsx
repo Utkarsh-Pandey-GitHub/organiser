@@ -67,7 +67,7 @@ const data = [
 export function TestDrawer() {
 
     return (
-        <div className="bg-neutral-900 text-black">
+        <div className=" text-black">
             <Drawer >
                 <DrawerTrigger asChild>
                     <div className="flex">

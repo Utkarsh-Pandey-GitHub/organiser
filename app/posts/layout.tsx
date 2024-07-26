@@ -42,7 +42,7 @@ export default function Layout({
 
   return (
 <PostsProvider>
-    <div className={`bg-neutral-900  text-white container grid grid-cols-3 `}>
+    <div className={`  text-white container grid grid-cols-3 `}>
       <div className="col-span-3 row-span-1  w-full">
         <Navbar />
       </div>

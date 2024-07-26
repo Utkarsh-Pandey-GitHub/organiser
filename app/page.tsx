@@ -34,7 +34,6 @@ export default function Home() {
         share thoughts, ideas, make goals with your team. you can also share files, images, videos,  and more.
       </div>
       
-      <Image src={dep} alt="dependency graph" className="w-full h-hull" />
     </div>
 
   );
