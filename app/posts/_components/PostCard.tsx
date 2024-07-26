@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Bookmark, FileText, Link2, MapPin, MessageCircle, Share, ThumbsUp, User } from 'lucide-react';
 import { Meteors } from '@/components/ui/meteors';
 import {
@@ -10,6 +10,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import CommentList from './comments/CommentList';
+import SharePanel from './share/Sharepanel';
 
 
 interface PostData {
@@ -23,25 +25,37 @@ interface PostData {
 }
 
 const PostCard: React.FC<PostData> = ({ title, description, file, link, author, location, tags }) => {
+  const [liked, setLiked] = React.useState(false);
+  const [saved, setSaved] = useState(false);
+  function handleLike() {
+    setLiked(prev => !liked);
+  }
+  function handleSave() {
+    setSaved(prev => !saved);
+  }
+  let idx = 1;
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden   w-full sm:w-2/3 bg-opacity-95 ">
+    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:overflow-visible  w-full sm:w-2/3 bg-opacity-95 ">
 
       {/* Post Image or Thumbnail */}
-      <Carousel className=''>
-        <CarouselContent className='text-white'>
+      {file.length > 1 ?
+        <Carousel className='group'>
+          <CarouselContent className='text-white '>
+            {(file?.map((f, index) => {
+              idx = index + 1;
+              return (
+                <CarouselItem key={index} className='text-red-400'>
+                  <img src={`${f}`} alt={title} className="w-full h-48 object-cover" />
 
-          {file.length > 0 && (file.map((f, index) => {
-
-            return (
-              <CarouselItem key={index}>
-                <img src={`${f}`} alt={title} className="w-full h-48 object-cover" />
-              </CarouselItem>)
-          }
-          ))}
-        </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel>
+                </CarouselItem>)
+            }
+            ))}
+            <div >{idx}</div>
+          </CarouselContent>
+          <CarouselPrevious className='bg-transparent group-hover:visible invisible absolute left-0 text-white font-extrabold' />
+          <CarouselNext className='bg-transparent group-hover:visible invisible absolute right-0 font-extrabold' />
+        </Carousel> :
+        <img src={`${file}`} alt={title} className="w-full h-48 object-cover" />}
 
 
       {/* Post Content */}
@@ -85,9 +99,14 @@ const PostCard: React.FC<PostData> = ({ title, description, file, link, author, 
         )}
         {/*like comment and share */}
         <div className="flex items-center mt-4 justify-evenly">
-          <button className="flex items-center text-gray-500 hover:text-blue-600 focus:outline-none ">
-            <ThumbsUp className="w-5 h-5 mr-1" />
-            <div className='hidden sm:block'>
+          <button className="flex items-center text-gray-500 focus:outline-none ">
+            <ThumbsUp
+              className="w-5 h-5 mr-1 "
+              onClick={handleLike}
+              fill={liked ? 'blue' : 'none'}
+              stroke={liked ? 'blue' : 'currentColor'}
+            />
+            <div className='hidden sm:block' onClick={handleLike}>
               Like
             </div>
           </button>
@@ -98,20 +117,24 @@ const PostCard: React.FC<PostData> = ({ title, description, file, link, author, 
               Comment
             </div>
           </button>
+          <div className="flex items-center text-gray-500 hover:text-blue-600 ml-4 focus:outline-none">
+            <SharePanel />
+          </div>
           <button className="flex items-center text-gray-500 hover:text-blue-600 ml-4 focus:outline-none">
-            <Share className="w-5 h-5 mr-1" />
-            <div className='hidden sm:block'>
-              Share
-            </div>
-          </button>
-          <button className="flex items-center text-gray-500 hover:text-blue-600 ml-4 focus:outline-none">
-            <Bookmark className="w-5 h-5 mr-1" />
-            <div className='hidden sm:block'>
+            <Bookmark className="w-5 h-5 mr-1"
+              onClick={handleSave}
+              fill={saved ? 'lime' : 'none'}
+              stroke={saved ? 'blue' : 'currentColor'}
+            />
+            <div className='hidden sm:block'
+              onClick={handleSave}
+            >
               Save
             </div>
           </button>
         </div>
       </div>
+      <CommentList />
 
     </div>
   );
